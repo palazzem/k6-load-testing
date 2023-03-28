@@ -23,10 +23,13 @@ then you should configure the k6 testing scenario, and finally run the k6 contai
 Create a `.env.secret` file in this repository folder where you must add your `DD_API_KEY`:
 
 ```env
-    DD_API_KEY=<value>
+    DD_SITE=<site>
+    DD_API_KEY=<key>
 ```
 
-Replace `<value>` with your Datadog API key you can find in [Datadog Settings](https://app.datadoghq.eu/organization-settings/api-keys).
+Replace `site` with `datadoghq.com` for US or `datadoghq.eu` for EU. For more details, check the [Datadog documentation](https://docs.datadoghq.com/getting_started/site/).
+
+Replace `<key>` with your Datadog API key you can find in [Datadog Settings](https://app.datadoghq.eu/organization-settings/api-keys).
 If you don't have any, create a new one and include the value as described above.
 
 Once the Datadog Agent is configured, you can run it via `docker-compose`:

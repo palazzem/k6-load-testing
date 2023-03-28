@@ -1,0 +1,23 @@
+version: "3.9"
+
+networks:
+  k6-load-testing:
+    name: k6-load-testing
+
+services:
+  datadog-agent:
+    image: datadog/agent:latest
+    networks:
+      - k6-load-testing
+    env_file: .env.secrets
+    environment:
+      - DD_API_KEY=${DD_API_KEY}
+      - DD_SITE=${DD_SITE}
+      - DD_HOSTNAME=load.testing
+      - DD_APM_ENABLED=false
+      - DD_PROCESS_AGENT_ENABLED=false
+      - DD_LOGS_ENABLED=false
+      - DD_DOGSTATSD_ORIGIN_DETECTION=true
+      - DD_DOGSTATSD_NON_LOCAL_TRAFFIC=true
+    ports:
+      - "8125:8125/udp"
