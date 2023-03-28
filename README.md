@@ -35,7 +35,7 @@ If you don't have any, create a new one and include the value as described above
 Once the Datadog Agent is configured, you can run it via `docker-compose`:
 
 ```bash
-    $ docker-compose up -d --env-file .env.secrets
+    $ docker-compose --env-file .env.secrets up -d
 ```
 
 ### Configure k6 Testing Scenario
