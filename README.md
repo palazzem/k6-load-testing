@@ -47,7 +47,15 @@ Once you finish your testing, remember to shutdown the Datadog Agent with the fo
 ### Configure k6 Testing Scenario
 
 All the configuration is available in `scripts/load-test.js` in the `options` variable. Once you have updated the configuration
-and the Datadog Agent is already running, launch your test scenario:
+and the Datadog Agent is already running, build your testing container that will include a static configuration.
+
+```bash
+    $ docker build -t local/k6:latest .
+```
+
+Remember you should build the container everytime you change the configuration.
+
+Once the container is ready, launch your test scenario:
 
 ```bash
     $ docker run --rm --network k6-load-testing \
