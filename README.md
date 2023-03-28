@@ -5,18 +5,18 @@ Load testing tool built with [k6](https://k6.io/) and [Datadog](https://www.data
 ## Requirements
 
 - [Docker or Docker Desktop](https://www.docker.com/)
-- `docker-compose`, usually installed through Docker or Docker Desktop
+- `docker-compose`, which is usually installed through Docker or Docker Desktop
 
 ## Components
 
 This tool provides two main components:
-1. A Datadog Agent that collects statsd metrics sent by a k6 container.
-2. A k6 container with a load testing configuration, in charge of doing the actual load testing.
+1. A Datadog Agent that collects StatsD metrics sent by a k6 container.
+2. A k6 container with a load testing configuration that is responsible for performing the load testing.
 
 ## Usage
 
-To run this tool you should first configure the Datadog Agent so that it can accept statsd metrics,
-then you should configure the k6 testing scenario, and finally run the k6 container.
+To use this tool, you will need to configure the Datadog Agent to accept statsd metrics, configure the k6
+testing scenario, and then run the k6 container.
 
 ### Configure the Datadog Agent
 
