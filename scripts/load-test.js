@@ -37,12 +37,9 @@ export function login () {
 
   const res = http.get('http://test.k6.io/login', params);
 
-  // Check if the result is a 200 or count it as failure
   check(res, {
     'status is 200': r => r.status === 200,
   });
 
-  // Sleep the VU for 1 second to make stable number of requests
-  // for the `options.duration` time
   sleep(1);
 }
