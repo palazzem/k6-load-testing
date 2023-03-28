@@ -7,14 +7,14 @@ export const options = {
       executor: 'constant-vus',
       exec: 'homepage',
       vus: 1,
-      duration: '5s',
+      duration: '5m',
     },
     login: {
       executor: 'constant-vus',
       exec: 'login',
       vus: 1,
-      duration: '5s',
-      startTime: '5s',
+      duration: '5m',
+      startTime: '5m',
     },
   },
 };
