@@ -20,7 +20,7 @@ then you should configure the k6 testing scenario, and finally run the k6 contai
 
 ### Configure the Datadog Agent
 
-Create a `.env.secret` file in this repository folder where you must add your `DD_API_KEY`:
+Create a `.env` file with the following content:
 
 ```env
     DD_SITE=<site>
@@ -35,7 +35,13 @@ If you don't have any, create a new one and include the value as described above
 Once the Datadog Agent is configured, you can run it via `docker-compose`:
 
 ```bash
-    $ docker-compose --env-file .env.secrets up -d
+    $ docker-compose up -d
+```
+
+Once you finish your testing, remember to shutdown the Datadog Agent with the following command:
+
+```bash
+    $ docker-compose down
 ```
 
 ### Configure k6 Testing Scenario
@@ -44,10 +50,11 @@ All the configuration is available in `scripts/load-test.js` in the `options` va
 and the Datadog Agent is already running, launch your test scenario:
 
 ```bash
-docker run --rm --network k6-load-testing \
-           --env-file .env \
-       local/k6:latest \
-       run --out statsd /scripts/load-test.js
+    $ docker run --rm --network k6-load-testing \
+                 --env K6_STATSD_ADDR=datadog-agent:8125 \
+                 --env K6_STATSD_ENABLE_TAGS=true \
+             local/k6:latest \
+             run --out statsd /scripts/load-test.js
 ```
 
 ## Check Results
