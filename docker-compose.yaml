@@ -9,7 +9,6 @@ services:
     image: datadog/agent:latest
     networks:
       - k6-load-testing
-    env_file: .env.secrets
     environment:
       - DD_API_KEY=${DD_API_KEY}
       - DD_SITE=${DD_SITE}
