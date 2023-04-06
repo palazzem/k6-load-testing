@@ -1,21 +1,53 @@
 import http from 'k6/http';
-import { sleep, check } from 'k6';
+import { check } from 'k6';
 
 export const options = {
+  tags: {
+    website: 'http://test.k6.io',
+  },
   scenarios: {
-    homepage: {
-      executor: 'constant-vus',
-      exec: 'homepage',
-      vus: 1,
-      duration: '5m',
-    },
-    login: {
-      executor: 'constant-vus',
-      exec: 'login',
-      vus: 1,
-      duration: '5m',
-      startTime: '5m',
-    },
+    // Usage: uncomment the following configurations to enable the scenario.
+    // If you need a new functions, just create a new one
+    //
+    // Scenario: equally hit all endpoints, one at a time
+    // homepage: {
+    //   executor: 'constant-vus',
+    //   exec: 'homepage',
+    //   vus: 5,
+    //   duration: '2m',
+    // },
+    // login: {
+    //   executor: 'constant-vus',
+    //   exec: 'login',
+    //   vus: 5,
+    //   duration: '2m',
+    //   startTime: '2m',
+    // },
+    //
+    // Scenario: equally hit all endpoints together
+    // homepage: {
+    //   executor: 'constant-vus',
+    //   exec: 'homepage',
+    //   vus: 1,
+    //   duration: '5m',
+    // },
+    // customerPage: {
+    //   executor: 'constant-vus',
+    //   exec: 'customerPage',
+    //   vus: 1,
+    //   duration: '1m',
+    // },
+    //
+    // Scenario: stress test (try to break), 10 req/s granted (depending on available CPUs)
+    // homepage: {
+    //   executor: 'constant-arrival-rate',
+    //   exec: 'homepage',
+    //   preAllocatedVUs: 5,
+    //   maxVUs: 50,
+    //   duration: '60m',
+    //   rate: 10,
+    //   timeUnit: '1s',
+    // },
   },
 };
 
@@ -25,8 +57,6 @@ export function homepage () {
   check(res, {
     'status is 200': r => r.status === 200,
   });
-
-  sleep(1);
 }
 
 export function login () {
@@ -40,6 +70,4 @@ export function login () {
   check(res, {
     'status is 200': r => r.status === 200,
   });
-
-  sleep(1);
 }
